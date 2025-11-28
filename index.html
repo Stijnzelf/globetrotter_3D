@@ -34,6 +34,10 @@
         .fire-anim { animation: pulse-fire 0.8s infinite; display: inline-block; }
         
         .glass-panel { background: rgba(20, 20, 40, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+        
+        /* Language Switcher Style */
+        .lang-btn { opacity: 0.5; transition: all 0.3s; filter: grayscale(100%); transform: scale(0.9); }
+        .lang-btn.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); border-bottom: 2px solid white; }
     </style>
 </head>
 <body>
@@ -46,7 +50,7 @@
         <div class="w-full px-4 pt-4 safe-top flex justify-center interactive">
             <div class="glass-panel w-full max-w-lg px-4 py-2 rounded-2xl flex justify-between items-center shadow-lg">
                 <div class="flex flex-col leading-tight">
-                    <span class="text-[10px] text-blue-200 font-bold uppercase tracking-wider">Ronde</span>
+                    <span class="text-[10px] text-blue-200 font-bold uppercase tracking-wider" data-i18n="round">Ronde</span>
                     <span class="text-xl font-black text-blue-400"><span id="roundDisplay">1</span> / 10</span>
                 </div>
                 
@@ -73,7 +77,7 @@
                         <p id="instructionLabel" class="text-gray-400 uppercase text-[10px] font-bold tracking-widest mb-1 truncate">Zoek dit land:</p>
                         <h2 id="targetName" class="text-2xl font-black text-gray-800 leading-none mb-1 truncate">Nederland</h2>
                         <div id="capitalWrapper">
-                            <span id="capitalLabel" class="text-blue-500 text-xs font-bold">Hoofdstad: </span>
+                            <span id="capitalLabel" class="text-blue-500 text-xs font-bold" data-i18n="capital_label">Hoofdstad: </span>
                             <span id="targetCapital" class="text-blue-700 text-sm font-bold truncate">Amsterdam</span>
                         </div>
                     </div>
@@ -87,20 +91,27 @@
                         <h3 id="resultTitle" class="text-xl font-black mb-1 truncate">Titel</h3>
                         <p id="resultSub" class="text-sm font-medium opacity-80 leading-tight">Subtekst</p>
                     </div>
-                    <button id="nextBtn" class="bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition active:scale-95 whitespace-nowrap">
+                    <button id="nextBtn" class="bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition active:scale-95 whitespace-nowrap" data-i18n="next_btn">
                         Verder ➡️
                     </button>
                 </div>
             </div>
 
-            <div id="loadingMsg" class="bg-black/50 px-6 py-3 rounded-full backdrop-blur text-white font-bold mb-10">
+            <div id="loadingMsg" class="bg-black/50 px-6 py-3 rounded-full backdrop-blur text-white font-bold mb-10" data-i18n="loading">
                 🌎 Wereldbol laden...
             </div>
         </div>
     </div>
 
-    <!-- START SCHERM (Met verbeterde scrolling) -->
+    <!-- START SCHERM -->
     <div id="startScreen" class="interactive absolute inset-0 z-50 bg-[#000011] overflow-y-auto">
+        
+        <!-- LANGUAGE SWITCHER TOP RIGHT -->
+        <div class="absolute top-6 right-6 flex gap-4 z-50">
+            <button onclick="setLanguage('nl')" class="lang-btn active text-3xl" id="langNL" title="Nederlands">🇳🇱</button>
+            <button onclick="setLanguage('en')" class="lang-btn text-3xl" id="langEN" title="English">🇬🇧</button>
+        </div>
+
         <div class="min-h-full flex flex-col items-center justify-center p-4 py-8">
             
             <div class="relative z-10 w-full max-w-md flex flex-col items-center gap-6">
@@ -110,52 +121,62 @@
                     <div class="bg-white/10 p-4 rounded-full mb-2 backdrop-blur-md inline-block shadow-[0_0_30px_rgba(59,130,246,0.3)]">
                         <span class="text-5xl block">🚀</span>
                     </div>
-                    <h1 class="text-4xl font-black mb-1 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-sm">Wereldreiziger</h1>
+                    <h1 class="text-4xl font-black mb-1 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-sm" data-i18n="app_title">Wereldreiziger</h1>
                 </div>
 
                 <!-- MODE SELECTIE -->
                 <div id="modeSelection" class="w-full space-y-2">
-                    <p class="text-center font-bold text-blue-200 mb-2 text-xs uppercase tracking-widest">Wat wil je oefenen?</p>
+                    <p class="text-center font-bold text-blue-200 mb-2 text-xs uppercase tracking-widest" data-i18n="choose_mode">Wat wil je oefenen?</p>
                     <button id="btnClassic" class="w-full bg-gray-800/80 hover:bg-gray-700 border border-white/10 p-3 rounded-xl flex items-center gap-4 transition active:scale-95 group">
-                        <span class="text-2xl">🌍</span> <div class="text-left"><div class="font-bold text-white">Landen</div><div class="text-[10px] text-gray-400 font-bold uppercase">Naam + Vlag</div></div>
+                        <span class="text-2xl">🌍</span> <div class="text-left"><div class="font-bold text-white" data-i18n="mode_countries">Landen</div><div class="text-[10px] text-gray-400 font-bold uppercase" data-i18n="desc_countries">Naam + Vlag</div></div>
                     </button>
                     <button id="btnFlags" class="w-full bg-gray-800/80 hover:bg-gray-700 border border-white/10 p-3 rounded-xl flex items-center gap-4 transition active:scale-95 group">
-                        <span class="text-2xl">🏳️</span> <div class="text-left"><div class="font-bold text-white">Vlaggen</div><div class="text-[10px] text-gray-400 font-bold uppercase">Alleen Vlag</div></div>
+                        <span class="text-2xl">🏳️</span> <div class="text-left"><div class="font-bold text-white" data-i18n="mode_flags">Vlaggen</div><div class="text-[10px] text-gray-400 font-bold uppercase" data-i18n="desc_flags">Alleen Vlag</div></div>
                     </button>
                     <button id="btnCapitals" class="w-full bg-gray-800/80 hover:bg-gray-700 border border-white/10 p-3 rounded-xl flex items-center gap-4 transition active:scale-95 group">
-                        <span class="text-2xl">🏛️</span> <div class="text-left"><div class="font-bold text-white">Hoofdsteden</div><div class="text-[10px] text-gray-400 font-bold uppercase">Alleen Stad</div></div>
+                        <span class="text-2xl">🏛️</span> <div class="text-left"><div class="font-bold text-white" data-i18n="mode_capitals">Hoofdsteden</div><div class="text-[10px] text-gray-400 font-bold uppercase" data-i18n="desc_capitals">Alleen Stad</div></div>
                     </button>
                 </div>
 
                 <!-- LEVEL SELECTIE -->
                 <div id="difficultySelection" class="w-full space-y-2 hidden">
-                    <p class="text-center font-bold text-blue-200 mb-2 text-xs uppercase tracking-widest">Kies je niveau</p>
-                    <button id="btnEasy" class="w-full bg-gradient-to-r from-green-900 to-green-800 border-l-4 border-green-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-green-100">Makkelijk</div><div class="text-[10px] text-green-300 font-bold">Grote landen</div></div><div class="text-lg font-black text-green-200/50">10pt</div></div></button>
-                    <button id="btnMedium" class="w-full bg-gradient-to-r from-yellow-900 to-yellow-800 border-l-4 border-yellow-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-yellow-100">Medium</div><div class="text-[10px] text-yellow-300 font-bold">Ook kleinere landen</div></div><div class="text-lg font-black text-yellow-200/50">12pt</div></div></button>
-                    <button id="btnHard" class="w-full bg-gradient-to-r from-red-900 to-red-800 border-l-4 border-red-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-red-100">Moeilijk</div><div class="text-[10px] text-red-300 font-bold">Voor experts</div></div><div class="text-lg font-black text-red-200/50">15pt</div></div></button>
-                    <button id="btnExam" class="w-full bg-gradient-to-r from-purple-900 to-purple-800 border-l-4 border-purple-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-purple-100">Examen</div><div class="text-[10px] text-purple-300 font-bold">Alles door elkaar</div></div><div class="text-lg font-black text-purple-200/50">15pt</div></div></button>
-                    <button id="btnBack" class="w-full text-gray-400 text-xs font-bold mt-2 hover:text-white">⬅️ Terug</button>
+                    <p class="text-center font-bold text-blue-200 mb-2 text-xs uppercase tracking-widest" data-i18n="choose_level">Kies je niveau</p>
+                    <button id="btnEasy" class="w-full bg-gradient-to-r from-green-900 to-green-800 border-l-4 border-green-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-green-100" data-i18n="lvl_easy">Makkelijk</div><div class="text-[10px] text-green-300 font-bold" data-i18n="desc_easy">Grote landen</div></div><div class="text-lg font-black text-green-200/50">10pt</div></div></button>
+                    <button id="btnMedium" class="w-full bg-gradient-to-r from-yellow-900 to-yellow-800 border-l-4 border-yellow-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-yellow-100" data-i18n="lvl_medium">Medium</div><div class="text-[10px] text-yellow-300 font-bold" data-i18n="desc_medium">Ook kleinere landen</div></div><div class="text-lg font-black text-yellow-200/50">12pt</div></div></button>
+                    <button id="btnHard" class="w-full bg-gradient-to-r from-red-900 to-red-800 border-l-4 border-red-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-red-100" data-i18n="lvl_hard">Moeilijk</div><div class="text-[10px] text-red-300 font-bold" data-i18n="desc_hard">Voor experts</div></div><div class="text-lg font-black text-red-200/50">15pt</div></div></button>
+                    <button id="btnExam" class="w-full bg-gradient-to-r from-purple-900 to-purple-800 border-l-4 border-purple-500 p-3 rounded-r-xl text-left transition active:scale-95"><div class="flex justify-between items-center"><div><div class="font-bold text-purple-100" data-i18n="lvl_exam">Examen</div><div class="text-[10px] text-purple-300 font-bold" data-i18n="desc_exam">Alles door elkaar</div></div><div class="text-lg font-black text-purple-200/50">15pt</div></div></button>
+                    <button id="btnBack" class="w-full text-gray-400 text-xs font-bold mt-2 hover:text-white" data-i18n="back_btn">⬅️ Terug</button>
                 </div>
 
                 <!-- LEADERBOARD -->
                 <div class="w-full bg-black/40 rounded-2xl p-4 border border-white/5">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">🏆 Top Scores</span>
-                        <span id="scoreSourceBadge" class="text-[10px] bg-white/10 px-2 py-0.5 rounded text-gray-400">Laden...</span>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest" data-i18n="leaderboard_title">🏆 Top Scores</span>
+                        <span id="scoreSourceBadge" class="text-[10px] bg-white/10 px-2 py-0.5 rounded text-gray-400" data-i18n="loading_short">Laden...</span>
                     </div>
                     <div id="leaderboardList" class="space-y-2 text-sm min-h-[100px]">
-                        <div class="text-center text-gray-500 text-xs py-4">Gegevens ophalen...</div>
+                        <div class="text-center text-gray-500 text-xs py-4" data-i18n="loading_data">Gegevens ophalen...</div>
                     </div>
                 </div>
 
                 <!-- CREDITS & DONATIE -->
-                <div class="w-full flex flex-col items-center gap-4 mt-2">
-                    <a href="https://buymeacoffee.com/stijnz11" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFDD00] hover:bg-[#FFEA00] text-black font-black rounded-full shadow-[0_0_15px_rgba(255,221,0,0.3)] hover:shadow-[0_0_20px_rgba(255,221,0,0.6)] transition-all transform hover:-translate-y-1 active:translate-y-0 text-xs">
-                        <span class="text-base">☕</span>
-                        <span>Trakteer op koffie</span>
-                    </a>
+                <div class="w-full flex flex-col items-center gap-4 mt-4">
+                    
+                    <div class="flex flex-wrap justify-center gap-3 w-full px-2">
+                        <!-- BUY ME A COFFEE -->
+                        <a href="https://buymeacoffee.com/stijnz11" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center gap-2 px-4 py-2.5 bg-[#FFDD00] hover:bg-[#FFEA00] text-black font-black rounded-full shadow-[0_0_15px_rgba(255,221,0,0.3)] hover:shadow-[0_0_20px_rgba(255,221,0,0.6)] transition-all transform hover:-translate-y-1 active:translate-y-0 text-xs">
+                            <span class="text-base">☕</span>
+                            <span data-i18n="btn_coffee">Koffie</span>
+                        </a>
 
-                    <a href="https://www.linkedin.com/in/stijnschretlen?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="text-blue-300/50 text-[10px] hover:text-blue-300 transition">
+                        <!-- PAYPAL -->
+                        <a href="https://www.paypal.com/donate/?hosted_button_id=LBWBL5AHX8TP4" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center gap-2 px-4 py-2.5 bg-[#0070BA] hover:bg-[#005ea6] text-white font-black rounded-full shadow-[0_0_15px_rgba(0,112,186,0.3)] hover:shadow-[0_0_20px_rgba(0,112,186,0.6)] transition-all transform hover:-translate-y-1 active:translate-y-0 text-xs">
+                            <span class="text-base">💳</span>
+                            <span data-i18n="btn_donate">Doneren</span>
+                        </a>
+                    </div>
+
+                    <a href="https://www.linkedin.com/in/stijnschretlen?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" class="text-blue-300/50 text-[10px] hover:text-blue-300 transition mt-2">
                         created by <span class="font-bold border-b border-blue-300/30 pb-0.5">Stijnz11</span>
                     </a>
                 </div>
@@ -167,22 +188,22 @@
     <!-- EIND SCHERM -->
     <div id="endScreen" class="interactive absolute inset-0 z-50 bg-purple-900 flex flex-col items-center justify-center text-white p-4 hidden">
         <span class="text-8xl mb-4 bounce">🏆</span>
-        <h1 class="text-4xl font-black mb-2">Klaar!</h1>
+        <h1 class="text-4xl font-black mb-2" data-i18n="game_over">Klaar!</h1>
         
         <div class="glass-panel rounded-3xl p-6 w-full max-w-sm mb-6 text-center">
-            <div class="text-sm uppercase font-bold text-purple-200 mb-2">Eindscore</div>
+            <div class="text-sm uppercase font-bold text-purple-200 mb-2" data-i18n="final_score">Eindscore</div>
             <div class="text-6xl font-black text-yellow-400 mb-2" id="finalScore">0</div>
             <div class="text-lg font-bold opacity-80 mb-4" id="finalCorrectCount">0 / 10</div>
             
             <!-- HIGH SCORE INPUT -->
             <div id="highScoreInputArea" class="hidden mt-4 pt-4 border-t border-white/20">
-                <p class="text-yellow-300 font-bold mb-2 animate-pulse">🎉 NIEUWE TOP SCORE!</p>
-                <input type="text" id="playerNameInput" placeholder="Jouw naam" class="w-full text-center text-black font-bold p-3 rounded-xl mb-2 focus:outline-none focus:ring-4 focus:ring-yellow-400" maxlength="12">
-                <button id="btnSaveScore" class="w-full bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold py-2 rounded-xl">Opslaan</button>
+                <p class="text-yellow-300 font-bold mb-2 animate-pulse" data-i18n="new_highscore">🎉 NIEUWE TOP SCORE!</p>
+                <input type="text" id="playerNameInput" placeholder="Name" class="w-full text-center text-black font-bold p-3 rounded-xl mb-2 focus:outline-none focus:ring-4 focus:ring-yellow-400" maxlength="12">
+                <button id="btnSaveScore" class="w-full bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-bold py-2 rounded-xl" data-i18n="save_btn">Opslaan</button>
             </div>
         </div>
 
-        <button id="restartBtn" class="bg-white text-purple-900 text-xl font-bold py-4 px-12 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105 transition">
+        <button id="restartBtn" class="bg-white text-purple-900 text-xl font-bold py-4 px-12 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105 transition" data-i18n="restart_btn">
             Nog een keer 🔄
         </button>
     </div>
@@ -228,81 +249,187 @@
         }
     </script>
 
-    <!-- GAME LOGIC SCRIPT (Direct uitgevoerd) -->
+    <!-- GAME LOGIC SCRIPT -->
     <script>
+        // --- TRANSLATIONS ---
+        let currentLang = 'nl';
+        
+        const TEXTS = {
+            nl: {
+                round: "Ronde",
+                app_title: "Wereldreiziger",
+                choose_mode: "WAT WIL JE OEFENEN?",
+                mode_countries: "Landen", desc_countries: "Naam + Vlag",
+                mode_flags: "Vlaggen", desc_flags: "Alleen Vlag",
+                mode_capitals: "Hoofdsteden", desc_capitals: "Alleen Stad",
+                choose_level: "KIES JE NIVEAU",
+                lvl_easy: "Makkelijk", desc_easy: "Grote landen",
+                lvl_medium: "Medium", desc_medium: "Ook kleinere landen",
+                lvl_hard: "Moeilijk", desc_hard: "Voor experts",
+                lvl_exam: "Examen", desc_exam: "Alles door elkaar",
+                back_btn: "⬅️ Terug",
+                leaderboard_title: "🏆 Top Scores",
+                loading_short: "Laden...", loading_data: "Gegevens ophalen...",
+                btn_coffee: "Koffie", btn_donate: "Doneren",
+                game_over: "Klaar!", final_score: "Eindscore",
+                new_highscore: "🎉 NIEUWE TOP SCORE!",
+                save_btn: "Opslaan", restart_btn: "Nog een keer 🔄",
+                loading: "🌎 Wereldbol laden...",
+                capital_label: "Hoofdstad: ",
+                next_btn: "Verder ➡️",
+                search_country: "Zoek dit land:",
+                what_country: "Welk land is dit?",
+                where_city: "Waar ligt deze stad?",
+                good_job: "Goed zo! 🎉",
+                found: "gevonden!",
+                too_bad: "Helaas...",
+                clicked_on: "Je klikte op",
+                green_is: "Groen is",
+                bonus_streak: "(+5 streak bonus!)"
+            },
+            en: {
+                round: "Round",
+                app_title: "Globetrotter",
+                choose_mode: "WHAT TO PRACTICE?",
+                mode_countries: "Countries", desc_countries: "Name + Flag",
+                mode_flags: "Flags", desc_flags: "Flag Only",
+                mode_capitals: "Capitals", desc_capitals: "City Only",
+                choose_level: "CHOOSE LEVEL",
+                lvl_easy: "Easy", desc_easy: "Major countries",
+                lvl_medium: "Medium", desc_medium: "Smaller countries",
+                lvl_hard: "Hard", desc_hard: "Experts only",
+                lvl_exam: "Exam", desc_exam: "Everything mixed",
+                back_btn: "⬅️ Back",
+                leaderboard_title: "🏆 Leaderboard",
+                loading_short: "Loading...", loading_data: "Fetching data...",
+                btn_coffee: "Coffee", btn_donate: "Donate",
+                game_over: "Finished!", final_score: "Final Score",
+                new_highscore: "🎉 NEW HIGH SCORE!",
+                save_btn: "Save", restart_btn: "Play Again 🔄",
+                loading: "🌎 Loading Globe...",
+                capital_label: "Capital: ",
+                next_btn: "Next ➡️",
+                search_country: "Find this country:",
+                what_country: "Which country is this?",
+                where_city: "Where is this city?",
+                good_job: "Great Job! 🎉",
+                found: "found!",
+                too_bad: "Too bad...",
+                clicked_on: "You clicked",
+                green_is: "Green is",
+                bonus_streak: "(+5 streak bonus!)"
+            }
+        };
+
         // --- DATA ---
         const COUNTRIES = [
-            { id: 'nl', t:1, iso:"NLD", n:"Nederland", c:"Amsterdam", lat: 52.13, lng: 5.29 },
-            { id: 'be', t:1, iso:"BEL", n:"België", c:"Brussel", lat: 50.50, lng: 4.46 },
-            { id: 'de', t:1, iso:"DEU", n:"Duitsland", c:"Berlijn", lat: 51.16, lng: 10.45 },
-            { id: 'fr', t:1, iso:"FRA", n:"Frankrijk", c:"Parijs", lat: 46.22, lng: 2.21 },
-            { id: 'gb', t:1, iso:"GBR", n:"Ver. Koninkrijk", c:"Londen", lat: 55.37, lng: -3.43 },
-            { id: 'es', t:1, iso:"ESP", n:"Spanje", c:"Madrid", lat: 40.46, lng: -3.74 },
-            { id: 'it', t:1, iso:"ITA", n:"Italië", c:"Rome", lat: 41.87, lng: 12.56 },
-            { id: 'us', t:1, iso:"USA", n:"Verenigde Staten", c:"Washington D.C.", lat: 37.09, lng: -95.71 },
-            { id: 'ca', t:1, iso:"CAN", n:"Canada", c:"Ottawa", lat: 56.13, lng: -106.34 },
-            { id: 'br', t:1, iso:"BRA", n:"Brazilië", c:"Brasilia", lat: -14.23, lng: -51.92 },
-            { id: 'cn', t:1, iso:"CHN", n:"China", c:"Beijing", lat: 35.86, lng: 104.19 },
-            { id: 'jp', t:1, iso:"JPN", n:"Japan", c:"Tokio", lat: 36.20, lng: 138.25 },
-            { id: 'au', t:1, iso:"AUS", n:"Australië", c:"Canberra", lat: -25.27, lng: 133.77 },
-            { id: 'ru', t:1, iso:"RUS", n:"Rusland", c:"Moskou", lat: 61.52, lng: 105.31 },
-            { id: 'in', t:1, iso:"IND", n:"India", c:"New Delhi", lat: 20.59, lng: 78.96 },
-            { id: 'tr', t:1, iso:"TUR", n:"Turkije", c:"Ankara", lat: 38.96, lng: 35.24 },
-            { id: 'eg', t:1, iso:"EGY", n:"Egypte", c:"Caïro", lat: 26.82, lng: 30.80 },
-            { id: 'za', t:1, iso:"ZAF", n:"Zuid-Afrika", c:"Pretoria", lat: -30.55, lng: 22.93 },
-            { id: 'ma', t:1, iso:"MAR", n:"Marokko", c:"Rabat", lat: 31.79, lng: -7.09 },
-            { id: 'gr', t:1, iso:"GRC", n:"Griekenland", c:"Athene", lat: 39.07, lng: 21.82 },
-            { id: 'ar', t:1, iso:"ARG", n:"Argentinië", c:"Buenos Aires", lat: -38.41, lng: -63.61 },
-            { id: 'mx', t:1, iso:"MEX", n:"Mexico", c:"Mexico-Stad", lat: 23.63, lng: -102.55 },
-            { id: 'pl', t:2, iso:"POL", n:"Polen", c:"Warschau", lat: 51.91, lng: 19.14 },
-            { id: 'se', t:2, iso:"SWE", n:"Zweden", c:"Stockholm", lat: 60.12, lng: 18.64 },
-            { id: 'no', t:2, iso:"NOR", n:"Noorwegen", c:"Oslo", lat: 60.47, lng: 8.46 },
-            { id: 'fi', t:2, iso:"FIN", n:"Finland", c:"Helsinki", lat: 61.92, lng: 25.74 },
-            { id: 'ua', t:2, iso:"UKR", n:"Oekraïne", c:"Kiev", lat: 48.37, lng: 31.16 },
-            { id: 'pt', t:2, iso:"PRT", n:"Portugal", c:"Lissabon", lat: 39.39, lng: -8.22 },
-            { id: 'ie', t:2, iso:"IRL", n:"Ierland", c:"Dublin", lat: 53.14, lng: -7.69 },
-            { id: 'co', t:2, iso:"COL", n:"Colombia", c:"Bogota", lat: 4.57, lng: -74.29 },
-            { id: 'pe', t:2, iso:"PER", n:"Peru", c:"Lima", lat: -9.19, lng: -75.01 },
-            { id: 'cl', t:2, iso:"CHL", n:"Chili", c:"Santiago", lat: -35.67, lng: -71.54 },
-            { id: 've', t:2, iso:"VEN", n:"Venezuela", c:"Caracas", lat: 6.42, lng: -66.58 },
-            { id: 'sa', t:2, iso:"SAU", n:"Saoedi-Arabië", c:"Riyad", lat: 23.88, lng: 45.07 },
-            { id: 'ir', t:2, iso:"IRN", n:"Iran", c:"Teheran", lat: 32.42, lng: 53.68 },
-            { id: 'th', t:2, iso:"THA", n:"Thailand", c:"Bangkok", lat: 15.87, lng: 100.99 },
-            { id: 'vn', t:2, iso:"VNM", n:"Vietnam", c:"Hanoi", lat: 14.05, lng: 108.27 },
-            { id: 'id', t:2, iso:"IDN", n:"Indonesië", c:"Jakarta", lat: -0.78, lng: 113.92 },
-            { id: 'kr', t:2, iso:"KOR", n:"Zuid-Korea", c:"Seoul", lat: 35.90, lng: 127.76 },
-            { id: 'nz', t:2, iso:"NZL", n:"Nieuw-Zeeland", c:"Wellington", lat: -40.90, lng: 174.88 },
-            { id: 'ng', t:2, iso:"NGA", n:"Nigeria", c:"Abuja", lat: 9.08, lng: 8.67 },
-            { id: 'ke', t:2, iso:"KEN", n:"Kenia", c:"Nairobi", lat: -0.02, lng: 37.90 },
-            { id: 'dz', t:2, iso:"DZA", n:"Algerije", c:"Algiers", lat: 28.03, lng: 1.65 },
-            { id: 'at', t:2, iso:"AUT", n:"Oostenrijk", c:"Wenen", lat: 47.51, lng: 14.55 },
-            { id: 'ch', t:2, iso:"CHE", n:"Zwitserland", c:"Bern", lat: 46.81, lng: 8.22 },
-            { id: 'hu', t:2, iso:"HUN", n:"Hongarije", c:"Boedapest", lat: 47.16, lng: 19.50 },
-            { id: 'cz', t:2, iso:"CZE", n:"Tsjechië", c:"Praag", lat: 49.81, lng: 15.47 },
-            { id: 'dk', t:2, iso:"DNK", n:"Denemarken", c:"Kopenhagen", lat: 56.26, lng: 9.50 },
-            { id: 'bg', t:2, iso:"BGR", n:"Bulgarije", c:"Sofia", lat: 42.73, lng: 25.48 },
-            { id: 'bo', t:2, iso:"BOL", n:"Bolivia", c:"Sucre", lat: -16.29, lng: -63.58 },
-            { id: 'pk', t:2, iso:"PAK", n:"Pakistan", c:"Islamabad", lat: 30.37, lng: 69.34 },
-            { id: 'bd', t:2, iso:"BGD", n:"Bangladesh", c:"Dhaka", lat: 23.68, lng: 90.35 },
-            { id: 'et', t:2, iso:"ETH", n:"Ethiopië", c:"Addis Abeba", lat: 9.14, lng: 40.48 },
-            { id: 'gh', t:2, iso:"GHA", n:"Ghana", c:"Accra", lat: 7.94, lng: -1.02 },
-            { id: 'is', t:3, iso:"ISL", n:"IJsland", c:"Reykjavik", lat: 64.96, lng: -19.02 },
-            { id: 'hr', t:3, iso:"HRV", n:"Kroatië", c:"Zagreb", lat: 45.10, lng: 15.20 },
-            { id: 'kz', t:3, iso:"KAZ", n:"Kazachstan", c:"Astana", lat: 48.01, lng: 66.92 },
-            { id: 'mn', t:3, iso:"MNG", n:"Mongolië", c:"Ulaanbaatar", lat: 46.86, lng: 103.84 },
-            { id: 'np', t:3, iso:"NPL", n:"Nepal", c:"Kathmandu", lat: 28.39, lng: 84.12 },
-            { id: 'ph', t:3, iso:"PHL", n:"Filipijnen", c:"Manilla", lat: 12.87, lng: 121.77 },
-            { id: 'my', t:3, iso:"MYS", n:"Maleisië", c:"Kuala Lumpur", lat: 4.21, lng: 101.97 },
-            { id: 'lk', t:3, iso:"LKA", n:"Sri Lanka", c:"Colombo", lat: 7.87, lng: 80.77 },
-            { id: 'mg', t:3, iso:"MDG", n:"Madagaskar", c:"Antananarivo", lat: -18.76, lng: 46.86 },
-            { id: 'tz', t:3, iso:"TZA", n:"Tanzania", c:"Dodoma", lat: -6.36, lng: 34.88 },
-            { id: 'uy', t:3, iso:"URY", n:"Uruguay", c:"Montevideo", lat: -32.52, lng: -55.76 },
-            { id: 'py', t:3, iso:"PRY", n:"Paraguay", c:"Asuncion", lat: -23.44, lng: -58.44 },
-            { id: 'ec', t:3, iso:"ECU", n:"Ecuador", c:"Quito", lat: -1.83, lng: -78.18 },
-            { id: 'cu', t:3, iso:"CUB", n:"Cuba", c: "Havana", lat: 21.52, lng: -77.78 },
-            { id: 'pa', t:3, iso:"PAN", n:"Panama", c:"Panama-Stad", lat: 8.53, lng: -80.78 },
-            { id: 'cr', t:3, iso:"CRI", n:"Costa Rica", c:"San Jose", lat: 9.74, lng: -83.75 },
-            { id: 'pg', t:3, iso:"PNG", n:"Papoea-Nieuw-Guinea", c:"Port Moresby", lat: -6.31, lng: 143.95 }
+            // TIER 1
+            { id: 'nl', t:1, iso:"NLD", n:"Nederland", n_en:"Netherlands", c:"Amsterdam", lat: 52.13, lng: 5.29 },
+            { id: 'be', t:1, iso:"BEL", n:"België", n_en:"Belgium", c:"Brussel", c_en:"Brussels", lat: 50.50, lng: 4.46 },
+            { id: 'de', t:1, iso:"DEU", n:"Duitsland", n_en:"Germany", c:"Berlijn", c_en:"Berlin", lat: 51.16, lng: 10.45 },
+            { id: 'fr', t:1, iso:"FRA", n:"Frankrijk", n_en:"France", c:"Parijs", c_en:"Paris", lat: 46.22, lng: 2.21 },
+            { id: 'gb', t:1, iso:"GBR", n:"Ver. Koninkrijk", n_en:"United Kingdom", c:"Londen", c_en:"London", lat: 55.37, lng: -3.43 },
+            { id: 'es', t:1, iso:"ESP", n:"Spanje", n_en:"Spain", c:"Madrid", lat: 40.46, lng: -3.74 },
+            { id: 'it', t:1, iso:"ITA", n:"Italië", n_en:"Italy", c:"Rome", lat: 41.87, lng: 12.56 },
+            { id: 'us', t:1, iso:"USA", n:"Verenigde Staten", n_en:"United States", c:"Washington D.C.", lat: 37.09, lng: -95.71 },
+            { id: 'ca', t:1, iso:"CAN", n:"Canada", n_en:"Canada", c:"Ottawa", lat: 56.13, lng: -106.34 },
+            { id: 'br', t:1, iso:"BRA", n:"Brazilië", n_en:"Brazil", c:"Brasilia", lat: -14.23, lng: -51.92 },
+            { id: 'cn', t:1, iso:"CHN", n:"China", n_en:"China", c:"Beijing", lat: 35.86, lng: 104.19 },
+            { id: 'jp', t:1, iso:"JPN", n:"Japan", n_en:"Japan", c:"Tokio", c_en:"Tokyo", lat: 36.20, lng: 138.25 },
+            { id: 'au', t:1, iso:"AUS", n:"Australië", n_en:"Australia", c:"Canberra", lat: -25.27, lng: 133.77 },
+            { id: 'ru', t:1, iso:"RUS", n:"Rusland", n_en:"Russia", c:"Moskou", c_en:"Moscow", lat: 61.52, lng: 105.31 },
+            { id: 'in', t:1, iso:"IND", n:"India", n_en:"India", c:"New Delhi", lat: 20.59, lng: 78.96 },
+            { id: 'tr', t:1, iso:"TUR", n:"Turkije", n_en:"Turkey", c:"Ankara", lat: 38.96, lng: 35.24 },
+            { id: 'eg', t:1, iso:"EGY", n:"Egypte", n_en:"Egypt", c:"Caïro", c_en:"Cairo", lat: 26.82, lng: 30.80 },
+            { id: 'za', t:1, iso:"ZAF", n:"Zuid-Afrika", n_en:"South Africa", c:"Pretoria", lat: -30.55, lng: 22.93 },
+            { id: 'ma', t:1, iso:"MAR", n:"Marokko", n_en:"Morocco", c:"Rabat", lat: 31.79, lng: -7.09 },
+            { id: 'gr', t:1, iso:"GRC", n:"Griekenland", n_en:"Greece", c:"Athene", c_en:"Athens", lat: 39.07, lng: 21.82 },
+            { id: 'ar', t:1, iso:"ARG", n:"Argentinië", n_en:"Argentina", c:"Buenos Aires", lat: -38.41, lng: -63.61 },
+            { id: 'mx', t:1, iso:"MEX", n:"Mexico", n_en:"Mexico", c:"Mexico-Stad", c_en:"Mexico City", lat: 23.63, lng: -102.55 },
+            // TIER 2
+            { id: 'pl', t:2, iso:"POL", n:"Polen", n_en:"Poland", c:"Warschau", c_en:"Warsaw", lat: 51.91, lng: 19.14 },
+            { id: 'se', t:2, iso:"SWE", n:"Zweden", n_en:"Sweden", c:"Stockholm", lat: 60.12, lng: 18.64 },
+            { id: 'no', t:2, iso:"NOR", n:"Noorwegen", n_en:"Norway", c:"Oslo", lat: 60.47, lng: 8.46 },
+            { id: 'fi', t:2, iso:"FIN", n:"Finland", n_en:"Finland", c:"Helsinki", lat: 61.92, lng: 25.74 },
+            { id: 'ua', t:2, iso:"UKR", n:"Oekraïne", n_en:"Ukraine", c:"Kiev", c_en:"Kyiv", lat: 48.37, lng: 31.16 },
+            { id: 'pt', t:2, iso:"PRT", n:"Portugal", n_en:"Portugal", c:"Lissabon", c_en:"Lisbon", lat: 39.39, lng: -8.22 },
+            { id: 'ie', t:2, iso:"IRL", n:"Ierland", n_en:"Ireland", c:"Dublin", lat: 53.14, lng: -7.69 },
+            { id: 'co', t:2, iso:"COL", n:"Colombia", n_en:"Colombia", c:"Bogota", lat: 4.57, lng: -74.29 },
+            { id: 'pe', t:2, iso:"PER", n:"Peru", n_en:"Peru", c:"Lima", lat: -9.19, lng: -75.01 },
+            { id: 'cl', t:2, iso:"CHL", n:"Chili", n_en:"Chile", c:"Santiago", lat: -35.67, lng: -71.54 },
+            { id: 've', t:2, iso:"VEN", n:"Venezuela", n_en:"Venezuela", c:"Caracas", lat: 6.42, lng: -66.58 },
+            { id: 'sa', t:2, iso:"SAU", n:"Saoedi-Arabië", n_en:"Saudi Arabia", c:"Riyad", c_en:"Riyadh", lat: 23.88, lng: 45.07 },
+            { id: 'ir', t:2, iso:"IRN", n:"Iran", n_en:"Iran", c:"Teheran", c_en:"Tehran", lat: 32.42, lng: 53.68 },
+            { id: 'th', t:2, iso:"THA", n:"Thailand", n_en:"Thailand", c:"Bangkok", lat: 15.87, lng: 100.99 },
+            { id: 'vn', t:2, iso:"VNM", n:"Vietnam", n_en:"Vietnam", c:"Hanoi", lat: 14.05, lng: 108.27 },
+            { id: 'id', t:2, iso:"IDN", n:"Indonesië", n_en:"Indonesia", c:"Jakarta", lat: -0.78, lng: 113.92 },
+            { id: 'kr', t:2, iso:"KOR", n:"Zuid-Korea", n_en:"South Korea", c:"Seoul", lat: 35.90, lng: 127.76 },
+            { id: 'nz', t:2, iso:"NZL", n:"Nieuw-Zeeland", n_en:"New Zealand", c:"Wellington", lat: -40.90, lng: 174.88 },
+            { id: 'ng', t:2, iso:"NGA", n:"Nigeria", n_en:"Nigeria", c:"Abuja", lat: 9.08, lng: 8.67 },
+            { id: 'ke', t:2, iso:"KEN", n:"Kenia", n_en:"Kenya", c:"Nairobi", lat: -0.02, lng: 37.90 },
+            { id: 'dz', t:2, iso:"DZA", n:"Algerije", n_en:"Algeria", c:"Algiers", lat: 28.03, lng: 1.65 },
+            { id: 'at', t:2, iso:"AUT", n:"Oostenrijk", n_en:"Austria", c:"Wenen", c_en:"Vienna", lat: 47.51, lng: 14.55 },
+            { id: 'ch', t:2, iso:"CHE", n:"Zwitserland", n_en:"Switzerland", c:"Bern", lat: 46.81, lng: 8.22 },
+            { id: 'hu', t:2, iso:"HUN", n:"Hongarije", n_en:"Hungary", c:"Boedapest", c_en:"Budapest", lat: 47.16, lng: 19.50 },
+            { id: 'cz', t:2, iso:"CZE", n:"Tsjechië", n_en:"Czech Republic", c:"Praag", c_en:"Prague", lat: 49.81, lng: 15.47 },
+            { id: 'dk', t:2, iso:"DNK", n:"Denemarken", n_en:"Denmark", c:"Kopenhagen", c_en:"Copenhagen", lat: 56.26, lng: 9.50 },
+            { id: 'bg', t:2, iso:"BGR", n:"Bulgarije", n_en:"Bulgaria", c:"Sofia", lat: 42.73, lng: 25.48 },
+            { id: 'bo', t:2, iso:"BOL", n:"Bolivia", n_en:"Bolivia", c:"Sucre", lat: -16.29, lng: -63.58 },
+            { id: 'pk', t:2, iso:"PAK", n:"Pakistan", n_en:"Pakistan", c:"Islamabad", lat: 30.37, lng: 69.34 },
+            { id: 'bd', t:2, iso:"BGD", n:"Bangladesh", n_en:"Bangladesh", c:"Dhaka", lat: 23.68, lng: 90.35 },
+            { id: 'et', t:2, iso:"ETH", n:"Ethiopië", n_en:"Ethiopia", c:"Addis Abeba", c_en:"Addis Ababa", lat: 9.14, lng: 40.48 },
+            { id: 'gh', t:2, iso:"GHA", n:"Ghana", n_en:"Ghana", c:"Accra", lat: 7.94, lng: -1.02 },
+            // TIER 3
+            { id: 'is', t:3, iso:"ISL", n:"IJsland", n_en:"Iceland", c:"Reykjavik", lat: 64.96, lng: -19.02 },
+            { id: 'hr', t:3, iso:"HRV", n:"Kroatië", n_en:"Croatia", c:"Zagreb", lat: 45.10, lng: 15.20 },
+            { id: 'kz', t:3, iso:"KAZ", n:"Kazachstan", n_en:"Kazakhstan", c:"Astana", lat: 48.01, lng: 66.92 },
+            { id: 'mn', t:3, iso:"MNG", n:"Mongolië", n_en:"Mongolia", c:"Ulaanbaatar", lat: 46.86, lng: 103.84 },
+            { id: 'np', t:3, iso:"NPL", n:"Nepal", n_en:"Nepal", c:"Kathmandu", lat: 28.39, lng: 84.12 },
+            { id: 'ph', t:3, iso:"PHL", n:"Filipijnen", n_en:"Philippines", c:"Manilla", c_en:"Manila", lat: 12.87, lng: 121.77 },
+            { id: 'my', t:3, iso:"MYS", n:"Maleisië", n_en:"Malaysia", c:"Kuala Lumpur", lat: 4.21, lng: 101.97 },
+            { id: 'lk', t:3, iso:"LKA", n:"Sri Lanka", n_en:"Sri Lanka", c:"Colombo", lat: 7.87, lng: 80.77 },
+            { id: 'mg', t:3, iso:"MDG", n:"Madagaskar", n_en:"Madagascar", c:"Antananarivo", lat: -18.76, lng: 46.86 },
+            { id: 'tz', t:3, iso:"TZA", n:"Tanzania", n_en:"Tanzania", c:"Dodoma", lat: -6.36, lng: 34.88 },
+            { id: 'uy', t:3, iso:"URY", n:"Uruguay", n_en:"Uruguay", c:"Montevideo", lat: -32.52, lng: -55.76 },
+            { id: 'py', t:3, iso:"PRY", n:"Paraguay", n_en:"Paraguay", c:"Asuncion", lat: -23.44, lng: -58.44 },
+            { id: 'ec', t:3, iso:"ECU", n:"Ecuador", n_en:"Ecuador", c:"Quito", lat: -1.83, lng: -78.18 },
+            { id: 'cu', t:3, iso:"CUB", n:"Cuba", n_en:"Cuba", c: "Havana", lat: 21.52, lng: -77.78 },
+            { id: 'pa', t:3, iso:"PAN", n:"Panama", n_en:"Panama", c:"Panama-Stad", c_en:"Panama City", lat: 8.53, lng: -80.78 },
+            { id: 'cr', t:3, iso:"CRI", n:"Costa Rica", n_en:"Costa Rica", c:"San Jose", lat: 9.74, lng: -83.75 },
+            { id: 'pg', t:3, iso:"PNG", n:"Papoea-Nieuw-Guinea", n_en:"Papua New Guinea", c:"Port Moresby", lat: -6.31, lng: 143.95 },
+            { id: 'uz', t:3, iso:"UZB", n:"Oezbekistan", n_en:"Uzbekistan", c:"Tasjkent", c_en:"Tashkent", lat: 41.37, lng: 64.58 },
+            { id: 'tm', t:3, iso:"TKM", n:"Turkmenistan", n_en:"Turkmenistan", c:"Asjchabad", c_en:"Ashgabat", lat: 38.96, lng: 59.55 },
+            { id: 'kg', t:3, iso:"KGZ", n:"Kirgizië", n_en:"Kyrgyzstan", c:"Bisjkek", c_en:"Bishkek", lat: 41.20, lng: 74.76 },
+            { id: 'tj', t:3, iso:"TJK", n:"Tadzjikistan", n_en:"Tajikistan", c:"Doesjanbe", c_en:"Dushanbe", lat: 38.86, lng: 71.27 },
+            { id: 'af', t:3, iso:"AFG", n:"Afghanistan", n_en:"Afghanistan", c:"Kaboel", c_en:"Kabul", lat: 33.93, lng: 67.71 },
+            { id: 'ge', t:3, iso:"GEO", n:"Georgië", n_en:"Georgia", c:"Tbilisi", lat: 42.31, lng: 43.35 },
+            { id: 'am', t:3, iso:"ARM", n:"Armenië", n_en:"Armenia", c:"Jerevan", c_en:"Yerevan", lat: 40.06, lng: 45.03 },
+            { id: 'az', t:3, iso:"AZE", n:"Azerbeidzjan", n_en:"Azerbaijan", c:"Bakoe", c_en:"Baku", lat: 40.14, lng: 47.57 },
+            { id: 'jo', t:3, iso:"JOR", n:"Jordanië", n_en:"Jordan", c:"Amman", lat: 30.58, lng: 36.23 },
+            { id: 'lb', t:3, iso:"LBN", n:"Libanon", n_en:"Lebanon", c:"Beiroet", c_en:"Beirut", lat: 33.85, lng: 35.86 },
+            { id: 'om', t:3, iso:"OMN", n:"Oman", n_en:"Oman", c:"Muscat", lat: 21.47, lng: 55.97 },
+            { id: 'ye', t:3, iso:"YEM", n:"Jemen", n_en:"Yemen", c:"Sanaa", lat: 15.55, lng: 48.51 },
+            { id: 'kh', t:3, iso:"KHM", n:"Cambodja", n_en:"Cambodia", c:"Phnom Penh", lat: 12.56, lng: 104.99 },
+            { id: 'la', t:3, iso:"LAO", n:"Laos", n_en:"Laos", c:"Vientiane", lat: 19.85, lng: 102.49 },
+            { id: 'mm', t:3, iso:"MMR", n:"Myanmar", n_en:"Myanmar", c:"Naypyidaw", lat: 21.91, lng: 95.95 },
+            { id: 'bt', t:3, iso:"BTN", n:"Bhutan", n_en:"Bhutan", c:"Thimphu", lat: 27.51, lng: 90.43 },
+            { id: 'sn', t:3, iso:"SEN", n:"Senegal", n_en:"Senegal", c:"Dakar", lat: 14.49, lng: -14.45 },
+            { id: 'ml', t:3, iso:"MLI", n:"Mali", n_en:"Mali", c:"Bamako", lat: 17.57, lng: -3.99 },
+            { id: 'ci', t:3, iso:"CIV", n:"Ivoorkust", n_en:"Ivory Coast", c:"Yamoussoukro", lat: 7.54, lng: -5.54 },
+            { id: 'cm', t:3, iso:"CMR", n:"Kameroen", n_en:"Cameroon", c:"Yaoundé", lat: 7.36, lng: 12.35 },
+            { id: 'ao', t:3, iso:"AGO", n:"Angola", n_en:"Angola", c:"Luanda", lat: -11.20, lng: 17.87 },
+            { id: 'zm', t:3, iso:"ZMB", n:"Zambia", n_en:"Zambia", c:"Lusaka", lat: -13.13, lng: 27.84 },
+            { id: 'zw', t:3, iso:"ZWE", n:"Zimbabwe", n_en:"Zimbabwe", c:"Harare", lat: -19.01, lng: 29.15 },
+            { id: 'mz', t:3, iso:"MOZ", n:"Mozambique", n_en:"Mozambique", c:"Maputo", lat: -18.66, lng: 35.52 },
+            { id: 'bw', t:3, iso:"BWA", n:"Botswana", n_en:"Botswana", c:"Gaborone", lat: -22.32, lng: 24.68 },
+            { id: 'na', t:3, iso:"NAM", n:"Namibië", n_en:"Namibia", c:"Windhoek", lat: -22.95, lng: 18.49 },
+            { id: 'gt', t:3, iso:"GTM", n:"Guatemala", n_en:"Guatemala", c:"Guatemala-Stad", c_en:"Guatemala City", lat: 15.78, lng: -90.23 },
+            { id: 'hn', t:3, iso:"HND", n:"Honduras", n_en:"Honduras", c:"Tegucigalpa", lat: 15.20, lng: -86.24 },
+            { id: 'ni', t:3, iso:"NIC", n:"Nicaragua", n_en:"Nicaragua", c:"Managua", lat: 12.86, lng: -85.20 },
+            { id: 'do', t:3, iso:"DOM", n:"Dominicaanse Republiek", n_en:"Dominican Republic", c:"Santo Domingo", lat: 18.73, lng: -70.16 },
+            { id: 'ht', t:3, iso:"HTI", n:"Haïti", n_en:"Haiti", c:"Port-au-Prince", lat: 18.97, lng: -72.28 },
+            { id: 'gy', t:3, iso:"GUY", n:"Guyana", n_en:"Guyana", c:"Georgetown", lat: 4.86, lng: -58.93 },
+            { id: 'sr', t:3, iso:"SUR", n:"Suriname", n_en:"Suriname", c:"Paramaribo", lat: 3.91, lng: -56.02 }
         ];
 
         let world, queue = [], currentTarget = null, score = 0, round = 0, correctCount = 0, currentStreak = 0;
@@ -310,8 +437,28 @@
         let dragStartX = 0, dragStartY = 0;
         const TOTAL_ROUNDS = 10;
 
+        // --- HELPERS ---
+        function getText(key) {
+            return TEXTS[currentLang][key] || key;
+        }
+
+        function updateStaticTexts() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerText = getText(key);
+            });
+        }
+
+        function getCountryName(c) {
+            return currentLang === 'en' && c.n_en ? c.n_en : c.n;
+        }
+
+        function getCapitalName(c) {
+            if (currentLang === 'en' && c.c_en) return c.c_en;
+            return c.c;
+        }
+
         // --- INIT & SETUP ---
-        // Setup UI meteen bij laden DOM (belangrijk voor GitHub Pages!)
         document.addEventListener('DOMContentLoaded', () => {
             setupUI();
             initGlobe();
@@ -387,6 +534,23 @@
             return 'rgba(200, 250, 255, 0.1)'; 
         }
 
+        // --- LANGUAGE LOGIC ---
+        window.setLanguage = function(lang) {
+            currentLang = lang;
+            
+            // Update active button state
+            document.getElementById('langNL').classList.toggle('active', lang === 'nl');
+            document.getElementById('langEN').classList.toggle('active', lang === 'en');
+            
+            // Update all static texts
+            updateStaticTexts();
+            
+            // If game is running, update current question
+            if (currentTarget) {
+                updateQuestionUI();
+            }
+        }
+
         // --- GAME LOGIC ---
         function chooseMode(mode) { gameMode = mode; document.getElementById('modeSelection').classList.add('hidden'); document.getElementById('difficultySelection').classList.remove('hidden'); }
         function resetToModeSelect() { document.getElementById('modeSelection').classList.remove('hidden'); document.getElementById('difficultySelection').classList.add('hidden'); }
@@ -430,17 +594,17 @@
             const els = { flag: document.getElementById('targetFlag'), name: document.getElementById('targetName'), capital: document.getElementById('targetCapital'), flagCont: document.getElementById('flagContainer'), instr: document.getElementById('instructionLabel'), capWrap: document.getElementById('capitalWrapper') };
             
             // GEBRUIK IMG TAG VOOR VLAG
-            els.flag.innerHTML = `<img src="https://flagcdn.com/w160/${currentTarget.id}.png" class="w-full h-full object-contain" alt="${currentTarget.n}">`;
+            els.flag.innerHTML = `<img src="https://flagcdn.com/w160/${currentTarget.id}.png" class="w-full h-full object-contain" alt="${getCountryName(currentTarget)}">`;
             
-            els.name.innerText = currentTarget.n; 
-            els.capital.innerText = currentTarget.c;
+            els.name.innerText = getCountryName(currentTarget); 
+            els.capital.innerText = getCapitalName(currentTarget);
             
             els.flagCont.style.display = 'flex'; els.name.style.display = 'block'; els.capWrap.style.display = 'block';
             els.name.className = "text-2xl font-black text-gray-800 leading-none mb-1 truncate"; els.capital.className = "text-blue-700 text-sm font-bold truncate";
             
-            if (gameMode === 'classic') els.instr.innerText = "Zoek dit land:";
-            else if (gameMode === 'flags') { els.instr.innerText = "Welk land is dit?"; els.name.style.display = 'none'; els.capWrap.style.display = 'none'; }
-            else if (gameMode === 'capitals') { els.instr.innerText = "Waar ligt deze stad?"; els.flagCont.style.display = 'none'; els.name.style.display = 'none'; els.capital.className = "text-3xl font-black text-blue-700 block mt-2 truncate"; }
+            if (gameMode === 'classic') els.instr.innerText = getText('search_country');
+            else if (gameMode === 'flags') { els.instr.innerText = getText('what_country'); els.name.style.display = 'none'; els.capWrap.style.display = 'none'; }
+            else if (gameMode === 'capitals') { els.instr.innerText = getText('where_city'); els.flagCont.style.display = 'none'; els.name.style.display = 'none'; els.capital.className = "text-3xl font-black text-blue-700 block mt-2 truncate"; }
         }
 
         function handleCountryClick(polygon, event) {
@@ -458,12 +622,13 @@
                 let points = (currentDifficulty === 'easy') ? 10 : (currentDifficulty === 'medium') ? 12 : 15;
                 if (currentStreak >= 3) { points += 5; playSound('bonus'); } 
                 score += points;
-                updateScore(0); updateStreakUI(); showResult(true, currentTarget.n);
+                updateScore(0); updateStreakUI(); showResult(true, getCountryName(currentTarget));
             } else {
                 playSound('wrong'); currentStreak = 0; updateStreakUI();
                 countryStatus[clickedIso] = 'wrong'; countryStatus[currentTarget.iso] = 'target';
                 const clickedCountryData = COUNTRIES.find(c => c.iso === clickedIso);
-                const displayWrongName = clickedCountryData ? clickedCountryData.n : clickedName;
+                // Use English name from polygon if not in our DB and English is active
+                const displayWrongName = clickedCountryData ? getCountryName(clickedCountryData) : clickedName;
                 showResult(false, displayWrongName);
                 if (currentTarget.lat && currentTarget.lng) world.pointOfView({ lat: currentTarget.lat, lng: currentTarget.lng, altitude: 2.0 }, 1500);
             }
@@ -484,11 +649,13 @@
             const title = document.getElementById('resultTitle'); const sub = document.getElementById('resultSub'); const content = document.getElementById('resultContent');
             if (isCorrect) {
                 content.className = "bg-green-100 text-green-900 rounded-3xl shadow-2xl p-4 border-b-8 border-green-400 flex items-center justify-between gap-4";
-                title.innerText = "Goed zo! 🎉"; sub.innerText = `${currentTarget.n} gevonden!`;
-                if(currentStreak >= 3) sub.innerText += ` (+5 streak bonus!)`;
+                title.innerText = getText('good_job'); 
+                sub.innerText = `${getCountryName(currentTarget)} ${getText('found')}`;
+                if(currentStreak >= 3) sub.innerText += ` ${getText('bonus_streak')}`;
             } else {
                 content.className = "bg-red-100 text-red-900 rounded-3xl shadow-2xl p-4 border-b-8 border-red-300 flex items-center justify-between gap-4";
-                title.innerText = "Helaas..."; sub.innerHTML = `Je klikte op <strong>${textData}</strong>.<br>Groen is ${currentTarget.n}.`;
+                title.innerText = getText('too_bad'); 
+                sub.innerHTML = `${getText('clicked_on')} <strong>${textData}</strong>.<br>${getText('green_is')} ${getCountryName(currentTarget)}.`;
             }
         }
 
@@ -510,7 +677,7 @@
             const badge = document.getElementById('scoreSourceBadge');
             badge.innerText = isOnline ? "Online" : "Lokaal";
             badge.className = isOnline ? "text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded" : "text-[10px] bg-white/10 px-2 py-0.5 rounded text-gray-400";
-            if (scores.length === 0) { list.innerHTML = '<div class="text-center text-gray-500 text-xs py-4">Nog geen scores...</div>'; return; }
+            if (scores.length === 0) { list.innerHTML = `<div class="text-center text-gray-500 text-xs py-4">Nog geen scores...</div>`; return; }
             list.innerHTML = scores.map((s, i) => `
                 <div class="flex justify-between items-center bg-white/10 px-3 py-2 rounded-lg border border-white/5">
                     <div class="flex gap-3 items-center"><span class="text-yellow-500 font-black w-4 text-xs">${i+1}.</span><span class="font-bold text-white text-xs truncate max-w-[100px]">${s.name}</span></div><span class="text-yellow-400 font-mono text-xs font-bold">${s.score}</span>
