@@ -1,0 +1,626 @@
+{
+  "NLD": {
+    "difficulty": 1,
+    "nl": "Nederland",
+    "capital_nl": "Amsterdam",
+    "capital_en": "Amsterdam"
+  },
+  "BEL": {
+    "difficulty": 1,
+    "nl": "België",
+    "capital_nl": "Brussel",
+    "capital_en": "Brussels"
+  },
+  "DEU": {
+    "difficulty": 1,
+    "nl": "Duitsland",
+    "capital_nl": "Berlijn",
+    "capital_en": "Berlin"
+  },
+  "FRA": {
+    "difficulty": 1,
+    "nl": "Frankrijk",
+    "capital_nl": "Parijs",
+    "capital_en": "Paris"
+  },
+  "GBR": {
+    "difficulty": 1,
+    "nl": "Ver. Koninkrijk",
+    "capital_nl": "Londen",
+    "capital_en": "London"
+  },
+  "ESP": {
+    "difficulty": 1,
+    "nl": "Spanje",
+    "capital_nl": "Madrid",
+    "capital_en": "Madrid"
+  },
+  "ITA": {
+    "difficulty": 1,
+    "nl": "Italië",
+    "capital_nl": "Rome",
+    "capital_en": "Rome"
+  },
+  "USA": {
+    "difficulty": 1,
+    "nl": "Verenigde Staten",
+    "capital_nl": "Washington D.C.",
+    "capital_en": "Washington D.C."
+  },
+  "CAN": {
+    "difficulty": 1,
+    "nl": "Canada",
+    "capital_nl": "Ottawa",
+    "capital_en": "Ottawa"
+  },
+  "BRA": {
+    "difficulty": 1,
+    "nl": "Brazilië",
+    "capital_nl": "Brasilia",
+    "capital_en": "Brasilia"
+  },
+  "CHN": {
+    "difficulty": 1,
+    "nl": "China",
+    "capital_nl": "Beijing",
+    "capital_en": "Beijing"
+  },
+  "JPN": {
+    "difficulty": 1,
+    "nl": "Japan",
+    "capital_nl": "Tokio",
+    "capital_en": "Tokyo"
+  },
+  "AUS": {
+    "difficulty": 1,
+    "nl": "Australië",
+    "capital_nl": "Canberra",
+    "capital_en": "Canberra"
+  },
+  "RUS": {
+    "difficulty": 1,
+    "nl": "Rusland",
+    "capital_nl": "Moskou",
+    "capital_en": "Moscow"
+  },
+  "IND": {
+    "difficulty": 1,
+    "nl": "India",
+    "capital_nl": "New Delhi",
+    "capital_en": "New Delhi"
+  },
+  "TUR": {
+    "difficulty": 1,
+    "nl": "Turkije",
+    "capital_nl": "Ankara",
+    "capital_en": "Ankara"
+  },
+  "EGY": {
+    "difficulty": 1,
+    "nl": "Egypte",
+    "capital_nl": "Caïro",
+    "capital_en": "Cairo"
+  },
+  "ZAF": {
+    "difficulty": 1,
+    "nl": "Zuid-Afrika",
+    "capital_nl": "Pretoria",
+    "capital_en": "Pretoria"
+  },
+  "MAR": {
+    "difficulty": 1,
+    "nl": "Marokko",
+    "capital_nl": "Rabat",
+    "capital_en": "Rabat"
+  },
+  "GRC": {
+    "difficulty": 1,
+    "nl": "Griekenland",
+    "capital_nl": "Athene",
+    "capital_en": "Athens"
+  },
+  "ARG": {
+    "difficulty": 1,
+    "nl": "Argentinië",
+    "capital_nl": "Buenos Aires",
+    "capital_en": "Buenos Aires"
+  },
+  "MEX": {
+    "difficulty": 1,
+    "nl": "Mexico",
+    "capital_nl": "Mexico-Stad",
+    "capital_en": "Mexico City"
+  },
+  "POL": {
+    "difficulty": 2,
+    "nl": "Polen",
+    "capital_nl": "Warschau",
+    "capital_en": "Warsaw"
+  },
+  "SWE": {
+    "difficulty": 2,
+    "nl": "Zweden",
+    "capital_nl": "Stockholm",
+    "capital_en": "Stockholm"
+  },
+  "NOR": {
+    "difficulty": 2,
+    "nl": "Noorwegen",
+    "capital_nl": "Oslo",
+    "capital_en": "Oslo"
+  },
+  "FIN": {
+    "difficulty": 2,
+    "nl": "Finland",
+    "capital_nl": "Helsinki",
+    "capital_en": "Helsinki"
+  },
+  "UKR": {
+    "difficulty": 2,
+    "nl": "Oekraïne",
+    "capital_nl": "Kiev",
+    "capital_en": "Kyiv"
+  },
+  "PRT": {
+    "difficulty": 2,
+    "nl": "Portugal",
+    "capital_nl": "Lissabon",
+    "capital_en": "Lisbon"
+  },
+  "IRL": {
+    "difficulty": 2,
+    "nl": "Ierland",
+    "capital_nl": "Dublin",
+    "capital_en": "Dublin"
+  },
+  "COL": {
+    "difficulty": 2,
+    "nl": "Colombia",
+    "capital_nl": "Bogota",
+    "capital_en": "Bogota"
+  },
+  "PER": {
+    "difficulty": 2,
+    "nl": "Peru",
+    "capital_nl": "Lima",
+    "capital_en": "Lima"
+  },
+  "CHL": {
+    "difficulty": 2,
+    "nl": "Chili",
+    "capital_nl": "Santiago",
+    "capital_en": "Santiago"
+  },
+  "VEN": {
+    "difficulty": 2,
+    "nl": "Venezuela",
+    "capital_nl": "Caracas",
+    "capital_en": "Caracas"
+  },
+  "SAU": {
+    "difficulty": 2,
+    "nl": "Saoedi-Arabië",
+    "capital_nl": "Riyad",
+    "capital_en": "Riyadh"
+  },
+  "IRN": {
+    "difficulty": 2,
+    "nl": "Iran",
+    "capital_nl": "Teheran",
+    "capital_en": "Tehran"
+  },
+  "THA": {
+    "difficulty": 2,
+    "nl": "Thailand",
+    "capital_nl": "Bangkok",
+    "capital_en": "Bangkok"
+  },
+  "VNM": {
+    "difficulty": 2,
+    "nl": "Vietnam",
+    "capital_nl": "Hanoi",
+    "capital_en": "Hanoi"
+  },
+  "IDN": {
+    "difficulty": 2,
+    "nl": "Indonesië",
+    "capital_nl": "Jakarta",
+    "capital_en": "Jakarta"
+  },
+  "KOR": {
+    "difficulty": 2,
+    "nl": "Zuid-Korea",
+    "capital_nl": "Seoul",
+    "capital_en": "Seoul"
+  },
+  "NZL": {
+    "difficulty": 2,
+    "nl": "Nieuw-Zeeland",
+    "capital_nl": "Wellington",
+    "capital_en": "Wellington"
+  },
+  "NGA": {
+    "difficulty": 2,
+    "nl": "Nigeria",
+    "capital_nl": "Abuja",
+    "capital_en": "Abuja"
+  },
+  "KEN": {
+    "difficulty": 2,
+    "nl": "Kenia",
+    "capital_nl": "Nairobi",
+    "capital_en": "Nairobi"
+  },
+  "DZA": {
+    "difficulty": 2,
+    "nl": "Algerije",
+    "capital_nl": "Algiers",
+    "capital_en": "Algiers"
+  },
+  "AUT": {
+    "difficulty": 2,
+    "nl": "Oostenrijk",
+    "capital_nl": "Wenen",
+    "capital_en": "Vienna"
+  },
+  "CHE": {
+    "difficulty": 2,
+    "nl": "Zwitserland",
+    "capital_nl": "Bern",
+    "capital_en": "Bern"
+  },
+  "HUN": {
+    "difficulty": 2,
+    "nl": "Hongarije",
+    "capital_nl": "Boedapest",
+    "capital_en": "Budapest"
+  },
+  "CZE": {
+    "difficulty": 2,
+    "nl": "Tsjechië",
+    "capital_nl": "Praag",
+    "capital_en": "Prague"
+  },
+  "DNK": {
+    "difficulty": 2,
+    "nl": "Denemarken",
+    "capital_nl": "Kopenhagen",
+    "capital_en": "Copenhagen"
+  },
+  "BGR": {
+    "difficulty": 2,
+    "nl": "Bulgarije",
+    "capital_nl": "Sofia",
+    "capital_en": "Sofia"
+  },
+  "BOL": {
+    "difficulty": 2,
+    "nl": "Bolivia",
+    "capital_nl": "Sucre",
+    "capital_en": "Sucre"
+  },
+  "PAK": {
+    "difficulty": 2,
+    "nl": "Pakistan",
+    "capital_nl": "Islamabad",
+    "capital_en": "Islamabad"
+  },
+  "BGD": {
+    "difficulty": 2,
+    "nl": "Bangladesh",
+    "capital_nl": "Dhaka",
+    "capital_en": "Dhaka"
+  },
+  "ETH": {
+    "difficulty": 2,
+    "nl": "Ethiopië",
+    "capital_nl": "Addis Abeba",
+    "capital_en": "Addis Ababa"
+  },
+  "GHA": {
+    "difficulty": 2,
+    "nl": "Ghana",
+    "capital_nl": "Accra",
+    "capital_en": "Accra"
+  },
+  "ISL": {
+    "difficulty": 3,
+    "nl": "IJsland",
+    "capital_nl": "Reykjavik",
+    "capital_en": "Reykjavik"
+  },
+  "HRV": {
+    "difficulty": 3,
+    "nl": "Kroatië",
+    "capital_nl": "Zagreb",
+    "capital_en": "Zagreb"
+  },
+  "KAZ": {
+    "difficulty": 3,
+    "nl": "Kazachstan",
+    "capital_nl": "Astana",
+    "capital_en": "Astana"
+  },
+  "MNG": {
+    "difficulty": 3,
+    "nl": "Mongolië",
+    "capital_nl": "Ulaanbaatar",
+    "capital_en": "Ulaanbaatar"
+  },
+  "NPL": {
+    "difficulty": 3,
+    "nl": "Nepal",
+    "capital_nl": "Kathmandu",
+    "capital_en": "Kathmandu"
+  },
+  "PHL": {
+    "difficulty": 3,
+    "nl": "Filipijnen",
+    "capital_nl": "Manilla",
+    "capital_en": "Manila"
+  },
+  "MYS": {
+    "difficulty": 3,
+    "nl": "Maleisië",
+    "capital_nl": "Kuala Lumpur",
+    "capital_en": "Kuala Lumpur"
+  },
+  "LKA": {
+    "difficulty": 3,
+    "nl": "Sri Lanka",
+    "capital_nl": "Colombo",
+    "capital_en": "Colombo"
+  },
+  "MDG": {
+    "difficulty": 3,
+    "nl": "Madagaskar",
+    "capital_nl": "Antananarivo",
+    "capital_en": "Antananarivo"
+  },
+  "TZA": {
+    "difficulty": 3,
+    "nl": "Tanzania",
+    "capital_nl": "Dodoma",
+    "capital_en": "Dodoma"
+  },
+  "URY": {
+    "difficulty": 3,
+    "nl": "Uruguay",
+    "capital_nl": "Montevideo",
+    "capital_en": "Montevideo"
+  },
+  "PRY": {
+    "difficulty": 3,
+    "nl": "Paraguay",
+    "capital_nl": "Asuncion",
+    "capital_en": "Asuncion"
+  },
+  "ECU": {
+    "difficulty": 3,
+    "nl": "Ecuador",
+    "capital_nl": "Quito",
+    "capital_en": "Quito"
+  },
+  "CUB": {
+    "difficulty": 3,
+    "nl": "Cuba",
+    "capital_nl": "Havana",
+    "capital_en": "Havana"
+  },
+  "PAN": {
+    "difficulty": 3,
+    "nl": "Panama",
+    "capital_nl": "Panama-Stad",
+    "capital_en": "Panama City"
+  },
+  "CRI": {
+    "difficulty": 3,
+    "nl": "Costa Rica",
+    "capital_nl": "San Jose",
+    "capital_en": "San Jose"
+  },
+  "PNG": {
+    "difficulty": 3,
+    "nl": "Papoea-Nieuw-Guinea",
+    "capital_nl": "Port Moresby",
+    "capital_en": "Port Moresby"
+  },
+  "UZB": {
+    "difficulty": 3,
+    "nl": "Oezbekistan",
+    "capital_nl": "Tasjkent",
+    "capital_en": "Tashkent"
+  },
+  "TKM": {
+    "difficulty": 3,
+    "nl": "Turkmenistan",
+    "capital_nl": "Asjchabad",
+    "capital_en": "Ashgabat"
+  },
+  "KGZ": {
+    "difficulty": 3,
+    "nl": "Kirgizië",
+    "capital_nl": "Bisjkek",
+    "capital_en": "Bishkek"
+  },
+  "TJK": {
+    "difficulty": 3,
+    "nl": "Tadzjikistan",
+    "capital_nl": "Doesjanbe",
+    "capital_en": "Dushanbe"
+  },
+  "AFG": {
+    "difficulty": 3,
+    "nl": "Afghanistan",
+    "capital_nl": "Kaboel",
+    "capital_en": "Kabul"
+  },
+  "GEO": {
+    "difficulty": 3,
+    "nl": "Georgië",
+    "capital_nl": "Tbilisi",
+    "capital_en": "Tbilisi"
+  },
+  "ARM": {
+    "difficulty": 3,
+    "nl": "Armenië",
+    "capital_nl": "Jerevan",
+    "capital_en": "Yerevan"
+  },
+  "AZE": {
+    "difficulty": 3,
+    "nl": "Azerbeidzjan",
+    "capital_nl": "Bakoe",
+    "capital_en": "Baku"
+  },
+  "JOR": {
+    "difficulty": 3,
+    "nl": "Jordanië",
+    "capital_nl": "Amman",
+    "capital_en": "Amman"
+  },
+  "LBN": {
+    "difficulty": 3,
+    "nl": "Libanon",
+    "capital_nl": "Beiroet",
+    "capital_en": "Beirut"
+  },
+  "OMN": {
+    "difficulty": 3,
+    "nl": "Oman",
+    "capital_nl": "Muscat",
+    "capital_en": "Muscat"
+  },
+  "YEM": {
+    "difficulty": 3,
+    "nl": "Jemen",
+    "capital_nl": "Sanaa",
+    "capital_en": "Sanaa"
+  },
+  "KHM": {
+    "difficulty": 3,
+    "nl": "Cambodja",
+    "capital_nl": "Phnom Penh",
+    "capital_en": "Phnom Penh"
+  },
+  "LAO": {
+    "difficulty": 3,
+    "nl": "Laos",
+    "capital_nl": "Vientiane",
+    "capital_en": "Vientiane"
+  },
+  "MMR": {
+    "difficulty": 3,
+    "nl": "Myanmar",
+    "capital_nl": "Naypyidaw",
+    "capital_en": "Naypyidaw"
+  },
+  "BTN": {
+    "difficulty": 3,
+    "nl": "Bhutan",
+    "capital_nl": "Thimphu",
+    "capital_en": "Thimphu"
+  },
+  "SEN": {
+    "difficulty": 3,
+    "nl": "Senegal",
+    "capital_nl": "Dakar",
+    "capital_en": "Dakar"
+  },
+  "MLI": {
+    "difficulty": 3,
+    "nl": "Mali",
+    "capital_nl": "Bamako",
+    "capital_en": "Bamako"
+  },
+  "CIV": {
+    "difficulty": 3,
+    "nl": "Ivoorkust",
+    "capital_nl": "Yamoussoukro",
+    "capital_en": "Yamoussoukro"
+  },
+  "CMR": {
+    "difficulty": 3,
+    "nl": "Kameroen",
+    "capital_nl": "Yaoundé",
+    "capital_en": "Yaoundé"
+  },
+  "AGO": {
+    "difficulty": 3,
+    "nl": "Angola",
+    "capital_nl": "Luanda",
+    "capital_en": "Luanda"
+  },
+  "ZMB": {
+    "difficulty": 3,
+    "nl": "Zambia",
+    "capital_nl": "Lusaka",
+    "capital_en": "Lusaka"
+  },
+  "ZWE": {
+    "difficulty": 3,
+    "nl": "Zimbabwe",
+    "capital_nl": "Harare",
+    "capital_en": "Harare"
+  },
+  "MOZ": {
+    "difficulty": 3,
+    "nl": "Mozambique",
+    "capital_nl": "Maputo",
+    "capital_en": "Maputo"
+  },
+  "BWA": {
+    "difficulty": 3,
+    "nl": "Botswana",
+    "capital_nl": "Gaborone",
+    "capital_en": "Gaborone"
+  },
+  "NAM": {
+    "difficulty": 3,
+    "nl": "Namibië",
+    "capital_nl": "Windhoek",
+    "capital_en": "Windhoek"
+  },
+  "GTM": {
+    "difficulty": 3,
+    "nl": "Guatemala",
+    "capital_nl": "Guatemala-Stad",
+    "capital_en": "Guatemala City"
+  },
+  "HND": {
+    "difficulty": 3,
+    "nl": "Honduras",
+    "capital_nl": "Tegucigalpa",
+    "capital_en": "Tegucigalpa"
+  },
+  "NIC": {
+    "difficulty": 3,
+    "nl": "Nicaragua",
+    "capital_nl": "Managua",
+    "capital_en": "Managua"
+  },
+  "DOM": {
+    "difficulty": 3,
+    "nl": "Dominicaanse Republiek",
+    "capital_nl": "Santo Domingo",
+    "capital_en": "Santo Domingo"
+  },
+  "HTI": {
+    "difficulty": 3,
+    "nl": "Haïti",
+    "capital_nl": "Port-au-Prince",
+    "capital_en": "Port-au-Prince"
+  },
+  "GUY": {
+    "difficulty": 3,
+    "nl": "Guyana",
+    "capital_nl": "Georgetown",
+    "capital_en": "Georgetown"
+  },
+  "SUR": {
+    "difficulty": 3,
+    "nl": "Suriname",
+    "capital_nl": "Paramaribo",
+    "capital_en": "Paramaribo"
+  }
+}
